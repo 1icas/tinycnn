@@ -1,0 +1,33 @@
+
+
+
+
+
+
+#todo
+1.关于模型文件的大小端问题
+
+
+#一些说明
+1.目前数据格式只支持 NHWC
+
+
+
+
+#模型文件格式说明（coming soon）
+
+
+
+
+
+#加入有一个二层的卷积神经网络，网络结构如下所示：
+#每层layer的索引值
+#InputLayer（输入层） 输入为float n: 1 w： 224 h：224 c：3
+#Conv（卷积层）当前层类型为float （即参数都为float，传入传出按照float处理）输出维度（4维） 输入layer索引  kernel_nums_: 10 kernel_h_:3 kernel_w: 3 kernel_c_:3  \
+		#stride_h_:3 stride_w_:3 padding_:1 use_biases: 1
+ 
+#Relu(激活函数) 无参数 当前层类型为float 输出维度（4维） 输入layer的索引值  
+#BatchNorm（归一化层） 当前层类型为float 输出维度（4维）输入layer的索引值 channel: 10 esp:1e-5
+
+#在文件中
+#0 20 60 10   4 1 224 224 3    4 x x x x 0 10 3 3 3 3 3 1 1   4 x x x x 1   4 x x x x 2 10 1e-5 + 参数

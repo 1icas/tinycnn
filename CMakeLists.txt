@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.1.3)
+project(tinycnn)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+SET(CMAKE_BUILD_TYPE "Debug")
+SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
+SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+#include_directories(./src)
+add_subdirectory(src)
+add_executable(test1 src/test/base_conv_test.cc)
+target_link_libraries(test1 SrcFunctions)
+
