@@ -79,7 +79,7 @@ public:
 
 #define Register(index, name) \
 	Create_Layer_Func(name) \
-	Creator name##_creator(index, create_##name##_layer, create_##name##_params);
+	static Creator name##_creator(index, create_##name##_layer, create_##name##_params);
 
 }
 

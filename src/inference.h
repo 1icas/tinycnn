@@ -20,6 +20,8 @@ public:
   //inference
   void inference(){}
 
+	void read_model(const char* model_name);
+
 private:
 	void init(ModelData& data) {
 		parse_layers_index(data);
