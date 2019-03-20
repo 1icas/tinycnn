@@ -91,6 +91,7 @@ int main(int argc, char* argv[]) {
 		for(int i = 0; i < output_h*output_w*kernel_nums; ++i) {
 			EQUAL(true_result[i], out_data[i]);
 		}
+		delete param;
 	}		
 	{
 		BaseConvParams* param = new BaseConvParams();
@@ -143,6 +144,7 @@ int main(int argc, char* argv[]) {
 		for(int i = 0; i < output_h*output_w*kernel_nums; ++i) {
 			EQUAL(true_result[i], out_data[i]);
 		}
+		delete param;
 	}
 
 	std::cout << "base conv test pass" << std::endl;

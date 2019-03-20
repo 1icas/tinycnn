@@ -108,6 +108,4 @@ void BaseConvLayer::naive_loop_convolution_op(const Tensor* input, Tensor* outpu
 //     NOT_SUPPORT;
 //   } 
 // }
-
-Register(BASECONV_LAYER, BaseConv);
 }

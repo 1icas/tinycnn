@@ -1,8 +1,8 @@
-#ifndef BASE_CONV_H_
-#define BASE_CONV_H_
+#ifndef LAYER_BASE_CONV_H_
+#define LAYER_BASE_CONV_H_
 
 #include "./neuron_network.h"
-#include "../layer_factory.h"
+//#include "../layer_factory.h"
 #include "../macro.h"
 #include "../param.h"
 #include "../tensor.h"

@@ -19,7 +19,6 @@ public:
 	}
 	
 	virtual ~Layer() {
-		DELETE(params_);
 	}
 		
 	virtual const char* layer_type () const = 0;

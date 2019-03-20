@@ -1,3 +1,6 @@
+#ifndef LAYER_DEPTHWISE_CONV_H_
+#define LAYER_DEPTHWISE_CONV_H_
+
 #include "./base_conv.h"
 #include "../param.h"
 #include "../tensor.h"
@@ -26,4 +29,4 @@ private:
 
 
 
-
+#endif

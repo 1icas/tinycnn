@@ -53,5 +53,4 @@ void BatchNormLayer::forward() {
 	}
 }
 
-Register(BATCH_NORM_LAYER, BatchNorm);
 }

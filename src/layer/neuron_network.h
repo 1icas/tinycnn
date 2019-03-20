@@ -1,3 +1,6 @@
+#ifndef NEURON_NETWORK_H_
+#define NEURON_NETWORK_H_
+
 #include "../layer.h"
 #include "../macro.h"
 #include "../param.h"
@@ -20,3 +23,5 @@ public:
 
 
 }
+
+#endif // !NEURON_NETWORK_H_

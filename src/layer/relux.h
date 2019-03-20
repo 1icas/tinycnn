@@ -1,8 +1,9 @@
+#ifndef LAYER_RELUX_H_
+#define LAYER_RELUX_H_
+
 #include "./activation.h"
 #include "../param.h"
 #include "../tensor.h"
-
-
 
 namespace tinycnn {
 
@@ -25,3 +26,5 @@ private:
 
 }
 
+
+#endif

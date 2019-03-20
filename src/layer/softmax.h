@@ -1,3 +1,6 @@
+#ifndef LAYER_SOFTMAX_H_
+#define LAYER_SOFTMAX_H_
+
 #include "./activation.h"
 #include "../macro.h"
 #include "../param.h"
@@ -20,3 +23,5 @@ private:
 };
 
 }
+
+#endif

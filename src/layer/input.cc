@@ -1,6 +1,5 @@
 #include "./input.h"
 #include "../error_handler.h"
-#include "../layer_factory.h"
 #include "../macro.h"
 
 namespace tinycnn {
@@ -17,5 +16,4 @@ void InputLayer::init(ALLDATA* all_data) {
   (*all_data).push_back(output_);
 }
 
-Register(INPUT_LAYER, Input);
 }

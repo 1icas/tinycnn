@@ -1,3 +1,7 @@
+#ifndef LAYER_UTIL_H_
+#define LAYER_UTIL_H_
+
+#include <algorithm>
 #include <vector>
 
 #include "../alias.h"
@@ -46,3 +50,5 @@ void _conv_output(const int width,
   }
 
 }
+
+#endif

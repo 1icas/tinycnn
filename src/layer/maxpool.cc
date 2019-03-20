@@ -1,6 +1,5 @@
 #include "./maxpool.h"
 #include "./util.h"
-#include "../layer_factory.h"
 #include "../macro.h"
 #include<cfloat>
 
@@ -94,7 +93,4 @@ void MaxPoolLayer::forward() {
     NOT_SUPPORT;
   }
 }
-
-
-Register(MAXPOOL2D_LAYER, MaxPool);
 }

@@ -2,6 +2,7 @@
 #define ERROR_HANLDER_H_
 
 #include <cassert>
+#include <cmath>
 
 #define NULL_POINTER(pointer) \
   if(pointer == nullptr) assert(false);
@@ -14,6 +15,10 @@
 
 #define EQUAL(v1, v2) \
   assert(v1 == v2)
+
+#define ALMOST_EQUAL(v1, v2, esp) \
+  if(abs(v1-v2) > esp) \
+    assert(false)
 
 #define LESS(v1, v2) \
   assert(v1 < v2)

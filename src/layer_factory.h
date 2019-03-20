@@ -19,41 +19,18 @@ public:
 	typedef LayerParams* (*ParamsCreator) ();
 	typedef std::map<int, ParamsCreator> PARAMS_CONTAINER;
 
-	static Registry& Get() {
-		static Registry registry;
-		return registry;
-	}
+	static Registry& Get();
 	
-	void insert(const int index, Creator creator, ParamsCreator pcreator) {
-		insert_layer(index, creator);
-		insert_params(index, pcreator);
-	}
+	void insert(const int index, Creator creator, ParamsCreator pcreator);
 
-	void insert_layer(const int index, Creator creator) {
-		if(layer_container_.find(index) != layer_container_.end())
-			return;
-		layer_container_[index] = creator;
-	}
+	void insert_layer(const int index, Creator creator);
 
-	Layer* create_layer(const int index, LayerParams* params) {
-		if(layer_container_.find(index) != layer_container_.end())
-			NOT_SUPPORT;
-		return layer_container_[index](params);
-	}
+	Layer* create_layer(const int index, LayerParams* params);
 
-	void insert_params(const int index, ParamsCreator creator) {
-		if(params_container_.find(index) != params_container_.end()) {
-			return;
-		}
-		params_container_[index] = creator;
-	}
+	void insert_params(const int index, ParamsCreator creator);
 
-	LayerParams* create_params(const int index) {
-		if(params_container_.find(index) == params_container_.end()) {
-			NOT_SUPPORT;
-		}
-		return params_container_[index]();
-	}
+	LayerParams* create_params(const int index);
+
 private:
 	LAYER_CONTAINER layer_container_;
 	PARAMS_CONTAINER params_container_;
@@ -62,7 +39,7 @@ private:
 class Creator {
 public:
 	Creator(const int index, Registry::Creator c, Registry::ParamsCreator p) {
-		auto rgr = Registry::Get();
+		auto& rgr = Registry::Get();
 		rgr.insert(index, c, p);
 		//rgr.insert_layer(index, c);
 		//rgr.insert_params(index, p);

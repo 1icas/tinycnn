@@ -1,5 +1,5 @@
-#ifndef MATH_H_
-#define MATH_H_
+#ifndef ALGORITHM_MATH_H_
+#define ALGORITHM_MATH_H_
 
 namespace tinycnn{
 

@@ -34,6 +34,6 @@ void ReluLayer::forward() {
 	}
 }
 
-Register(RELU_LAYER, Relu);
+
 }
 

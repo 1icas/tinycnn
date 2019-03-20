@@ -1,6 +1,5 @@
 #include "./flatten.h"
 #include "../error_handler.h"
-#include "../layer_factory.h"
 #include "../macro.h"
 
 namespace tinycnn {
@@ -27,5 +26,4 @@ void FlattenLayer::init(ALLDATA* all_data) {
   output->set_shape(std::vector<int>{f_d, s});
 }
 
-Register(FLATTEN_LAYER, Flatten);
 }

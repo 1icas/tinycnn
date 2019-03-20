@@ -1,3 +1,6 @@
+#ifndef LAYER_MAXPOOL_H_
+#define LAYER_MAXPOOL_H_
+
 #include "./activation.h"
 #include "../macro.h"
 #include "../param.h"
@@ -28,3 +31,5 @@ private:
 };
 
 }
+
+#endif

@@ -3,7 +3,6 @@
 
 #include "../config.h"
 #include "../error_handler.h"
-#include "../layer_factory.h"
 #include "../macro.h"
 
 namespace tinycnn {
@@ -40,5 +39,4 @@ void ReluXLayer::forward() {
 	
 }
 
-Register(RELUX_LAYER, ReluX);
 }

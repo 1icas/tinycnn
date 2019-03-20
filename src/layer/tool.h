@@ -1,3 +1,6 @@
+#ifndef LAYER_TOOL_H_
+#define LAYER_TOOL_H_
+
 #include "../layer.h"
 #include "../macro.h"
 #include "../param.h"
@@ -17,3 +20,5 @@ public:
 
 
 }
+
+#endif

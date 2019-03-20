@@ -1,5 +1,5 @@
 #include "./depthwise_conv.h"
-#include "../layer_factory.h"
+//#include "../layer_factory.h"
 #include "../macro.h"
 
 namespace tinycnn {
@@ -59,7 +59,26 @@ void DepthwiseConvLayer::naive_loop_depthwise_conv_op(const Tensor* input, Tenso
 
 }
 
-Register(DEPTHWISE_CONV_LAYER, DepthwiseConv);
+//Register(DEPTHWISE_CONV_LAYER, DepthwiseConv);
+
+
+
+	//LayerParams* create_DepthwiseConv_params() { 
+	//	return new DepthwiseConvParams(); 
+	//} 
+	//Layer* create_DepthwiseConv_layer(LayerParams* params) { 
+	//	return new DepthwiseConvLayer(params); 
+	//}
+
+
+
+	//static Creator DepthwiseConv_creator(0, create_DepthwiseConv_layer, create_DepthwiseConv_params);
+
+
+
+
+
+
 }
 
 

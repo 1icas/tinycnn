@@ -1,5 +1,4 @@
 #include "./softmax.h"
-#include "../layer_factory.h"
 #include "../macro.h"
 #include <cmath>
 
@@ -55,5 +54,4 @@ void SoftmaxLayer::forward() {
 
 }
 
-Register(SOFTMAX_LAYER, Softmax);
 }

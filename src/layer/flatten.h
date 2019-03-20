@@ -1,5 +1,5 @@
-#ifndef FLATTEN_H_
-#define FLATTEN_H_
+#ifndef LAYER_FLATTEN_H_
+#define LAYER_FLATTEN_H_
 
 #include "./tool.h"
 

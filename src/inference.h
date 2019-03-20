@@ -4,21 +4,40 @@
 #include <vector>
 #include <map>
 #include "./layer.h"
+#include "./alias.h"
 #include "./param.h"
 #include "./tensor.h"
 #include "./tools/parse_binary.h"
+
 namespace tinycnn {
 
 class Inference {
 public:
-	typedef std::map<int, std::vector<Tensor*>> ALLDATA;
 
 	Inference() {
-		//parse();
+	
+	}
+
+	~Inference() {
+		 for(int i = 0; i < all_data_.size(); ++i) {
+		 	auto data_group = all_data_[i];
+		 	for(int j = 0; j < data_group.size(); ++j) {
+		 		auto* t = data_group[j];
+		 		DELETE(t);
+		 	}
+		 }
+		for(int i = 0; i < all_layer_params_.size(); ++i) {
+			auto* p = all_layer_params_[i];
+			DELETE(p);
+		}
+		for(int i = 0; i < all_layers_.size(); ++i) {
+			auto* l = all_layers_[i];
+			DELETE(l);
+		}
 	}
 
   //inference
-  void inference(){}
+	Tensor* inference(Tensor* input);
 
 	void read_model(const char* model_name);
 
@@ -48,7 +67,6 @@ private:
 
 private:
 	std::vector<int> layer_index_;	
-	//std::vector<Tensor*> all_input_;
 	ALLDATA all_data_;
 	std::vector<LayerParams*> all_layer_params_;
 	std::vector<Layer*> all_layers_;

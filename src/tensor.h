@@ -51,7 +51,8 @@ private:
       return;
     }
     desc_count();
-    DELETE(data_);
+		if(data_->ref_count == 0)
+			DELETE(data_);
   }
 
   inline void malloc_data(int size) {

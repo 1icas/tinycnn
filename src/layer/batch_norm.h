@@ -1,3 +1,6 @@
+#ifndef LAYER_BATCH_NORM_H_
+#define LAYER_BATCH_NORM_H_
+
 #include "./neuron_network.h"
 #include "../param.h"
 #include "../tensor.h"
@@ -26,3 +29,4 @@ private:
 }
 
 
+#endif

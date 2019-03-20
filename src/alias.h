@@ -1,3 +1,6 @@
+#ifndef ALIAS_H_
+#define ALIAS_H_
+
 #include "./tensor.h"
 
 #include <utility>
@@ -12,3 +15,5 @@ namespace tinycnn {
 
   typedef std::vector<int> SHAPE;
 }
+
+#endif
