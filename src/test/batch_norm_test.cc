@@ -24,8 +24,9 @@ class BatchNormTest : public BatchNormLayer {
 
 using namespace test;
 
-int main() {
-  {
+int main()
+{
+	{
 		BatchNormParams* bnp = new BatchNormParams();
 		Tensor in(std::vector<int>{1,3,3,3}, Type::t_float32);
 		Tensor* t_mean = new Tensor(std::vector<int>{3}, Type::t_float32);
@@ -79,11 +80,10 @@ int main() {
 		const float* out_data = (float*)(all_data[1][0]->data());//(float*)(out.data());
 		//float true_result[] = {-28, -9, -23, -24, -59, -62, 73, 60, -28};
 		for(int i = 0; i < all_data[1][0]->size(); ++i) {
-			//EQUAL(true_result[i], out_data[i]);
-			std::cout << out_data[i] << std::endl;
+			ALMOST_EQUAL(output[i], out_data[i], 1e-5);
+			//std::cout << out_data[i] << std::endl;
 		}
-  }
-
+	}
 	{
 		float input[] = {0,3,7,8,0,1,5,8,5,0,9,0,9,5,7,8,3,5,5,9,4,8,4,8,3,5,4};
 		float mean[] = {1,3,2};
@@ -92,5 +92,51 @@ int main() {
 		float scale[] = {1,2,1};
 		float output[] = {1.2928951,2.0,6.9999747,6.9497347,-3.99997,1.000005,4.8284197,11.99995,4.999985,1.2928951,13.999941,1.001358e-05,7.6568403,5.9999804,6.9999747,6.9497347,2.0,4.999985,4.8284197,13.999941,3.99999,6.9497347,3.99999,7.99997,3.41421,5.9999804,3.99999};
 		float esp = 1e-5;
+		BatchNormParams* bnp = new BatchNormParams();
+		Tensor in(std::vector<int>{1, 3, 3, 3}, Type::t_float32);
+		Tensor* t_mean = new Tensor(std::vector<int>{3}, Type::t_float32);
+		Tensor* t_variance = new Tensor(std::vector<int>{3}, Type::t_float32);
+		Tensor* t_offset = new Tensor(std::vector<int>{3}, Type::t_float32);
+		Tensor* t_scale = new Tensor(std::vector<int>{3}, Type::t_float32);
+		bnp->set_mean(t_mean);
+		bnp->set_variance(t_variance);
+		bnp->set_esp(esp);
+		bnp->set_scale(t_scale);
+		bnp->set_shift(t_offset);
+		INDEX id{ 0, std::vector<int>{0} };
+		bnp->set_input_index(id);
+		bnp->set_type(Type::t_float32);
+		float* m_data = static_cast<float*>(t_mean->mutable_data());
+		float* v_data = static_cast<float*>(t_variance->mutable_data());
+		float* o_data = static_cast<float*>(t_offset->mutable_data());
+		float* s_data = static_cast<float*>(t_scale->mutable_data());
+		for (int i = 0; i < t_mean->size(); ++i) {
+			m_data[i] = mean[i];
+		}
+		for (int i = 0; i < t_variance->size(); ++i) {
+			v_data[i] = variance[i];
+		}
+		for (int i = 0; i < t_offset->size(); ++i) {
+			o_data[i] = offset[i];
+		}
+		for (int i = 0; i < t_scale->size(); ++i) {
+			s_data[i] = scale[i];
+		}
+
+		float* in_data = static_cast<float*>(in.mutable_data());
+		for (int i = 0; i < in.size(); ++i) {
+			in_data[i] = input[i];
+		}
+		ALLDATA all_data;
+		OUTPUTDATA output_data;
+		output_data.push_back(&in);
+		all_data.push_back(output_data);
+		BatchNormTest layer1(bnp);
+		//layer1.init(&all_data);
+		layer1.test(&all_data);
+		const float* out_data = (float*)(all_data[1][0]->data());
+		for (int i = 0; i < all_data[1][0]->size(); ++i) {
+			ALMOST_EQUAL(output[i], out_data[i], 1e-5);
+		}
 	}
 }

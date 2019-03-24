@@ -41,10 +41,10 @@ void BatchNormLayer::forward() {
 		auto input_size = input->size();
 		
 		for(int i = 0; i < input_size; i+=channel_size) {
-			const float* a = input_data + i * channel_size;
-			float* b = output_data + i * channel_size;
+			const float* a = input_data + i;
+			float* b = output_data + i;
 			for(int j = 0; j < channel_size; ++j) {
-				b[j] = (a[j] - mean_data[j]) / sqrt(variance_data[j]*variance_data[j] + esp_) * scale_data[j] + shift_data[j];
+				b[j] = (a[j] - mean_data[j]) / sqrt(variance_data[j] + esp_) * scale_data[j] + shift_data[j];
 			}
 		}
 
