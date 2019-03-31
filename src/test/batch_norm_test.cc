@@ -83,6 +83,7 @@ int main()
 			ALMOST_EQUAL(output[i], out_data[i], 1e-5);
 			//std::cout << out_data[i] << std::endl;
 		}
+		delete bnp;
 	}
 	{
 		float input[] = {0,3,7,8,0,1,5,8,5,0,9,0,9,5,7,8,3,5,5,9,4,8,4,8,3,5,4};
@@ -138,5 +139,6 @@ int main()
 		for (int i = 0; i < all_data[1][0]->size(); ++i) {
 			ALMOST_EQUAL(output[i], out_data[i], 1e-5);
 		}
+		delete bnp;
 	}
 }

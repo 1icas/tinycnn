@@ -57,18 +57,15 @@ void MaxPoolLayer::forward() {
     const float* input_data = (float*)input->data();
     float* output_data = (float*)output->mutable_data();
     const auto feature_map_size = input_shape[1] * input_shape[2];
-    // const auto f_s = feature_map_size * input_shape[3];
     auto index = 0;
-		for(int s_h = -pad_top_; s_h < input_shape[1]+pad_bottom_ && s_h+k_h_ < input_shape[1]+pad_along_height_; s_h += stride_h_) {
-			for(int s_w = -pad_left_; s_w < input_shape[2]+pad_right_ && s_w+k_w_ < input_shape[2]+pad_along_width_; s_w += stride_w_) {
+		for(int s_h = -pad_top_; s_h < input_shape[1]+pad_bottom_ && s_h+k_h_-1 < input_shape[1]+pad_along_height_; s_h += stride_h_) {
+			for(int s_w = -pad_left_; s_w < input_shape[2]+pad_right_ && s_w+k_w_-1 < input_shape[2]+pad_along_width_; s_w += stride_w_) {
 				//const float* input_data1 = input_data + (s_h < 0 ? 0 : s_h >= input_shape[1] ? input_shape[1]-1 : s_h) * input_shape[2]
 											//  + (s_w < 0 ? 0 : s_w >= input_shape[2]-1 ? input_shape[2]-1 : s_w);
 				for(int n = 0; n < input_shape[3]; ++n) {
   				float min = FLT_MIN;
-				// for(int c = 0; c < kernel_c_; ++c) {
           for(int h = 0; h < k_h_; ++h) {
-            for(int w = 0; w < k_w_; ++w) {
-              // for(int c = 0; c < k_c_; ++c) {
+            for(int w = 0; w < k_w_; ++w) { 
               //   //for 'same' padding. we should skip compute the zero padding region
               if(s_w+w < 0 || s_h+h < 0 || s_w+w >= input_shape[2] || s_h+h >= input_shape[1]) {
                 if(min < 0) min = 0;
@@ -76,15 +73,9 @@ void MaxPoolLayer::forward() {
                 float v = input_data[(s_h+h)*input_shape[2]*input_shape[3] + (s_w+w)*input_shape[3] + n]; 
                 if(min < v) min = v;
               }
-              //     continue;
-              //   o += input_data[(s_h+h)*input_shape[2]*input_shape[3] + (s_w+w)*input_shape[3] + c] * weights_params[w_s*n + h*kernel_w_*kernel_c_ + w*kernel_c_ + c];
-              //   // o += input_data[c*feature_map_size + (s_h+h)*input_shape[2] + w + s_w]*weights_params[w_s*n + weights_map_size*c + h*kernel_w_ + w];
-              // }
-              
             }
           }
 
-				// }
 				  output_data[index++] = min;
 			  }
   		}

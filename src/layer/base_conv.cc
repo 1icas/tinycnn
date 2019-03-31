@@ -69,8 +69,8 @@ void BaseConvLayer::naive_loop_convolution_op(const Tensor* input, Tensor* outpu
     const auto feature_map_size = input_shape[1] * input_shape[2];
     // const auto f_s = feature_map_size * input_shape[3];
     auto index = 0;
-		for(int s_h = -pad_top_; s_h < input_shape[1]+pad_bottom_ && s_h+kernel_h_ < input_shape[1]+pad_along_height_; s_h += stride_h_) {
-			for(int s_w = -pad_left_; s_w < input_shape[2]+pad_right_ && s_w+kernel_w_ < input_shape[2]+pad_along_width_; s_w += stride_w_) {
+		for(int s_h = -pad_top_; s_h < input_shape[1]+pad_bottom_ && s_h+kernel_h_-1 < input_shape[1]+pad_along_height_; s_h += stride_h_) {
+			for(int s_w = -pad_left_; s_w < input_shape[2]+pad_right_ && s_w+kernel_w_-1 < input_shape[2]+pad_along_width_; s_w += stride_w_) {
 				//const float* input_data1 = input_data + (s_h < 0 ? 0 : s_h >= input_shape[1] ? input_shape[1]-1 : s_h) * input_shape[2]
 											//  + (s_w < 0 ? 0 : s_w >= input_shape[2]-1 ? input_shape[2]-1 : s_w);
 				for(int n = 0; n < kernel_nums_; ++n) {

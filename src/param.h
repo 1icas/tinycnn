@@ -330,6 +330,10 @@ public:
 		return axis_;
 	}
 
+	void set_axis(int axis) {
+		axis_ = axis;
+	}
+
 	virtual void parse(ModelData& data) override {
 		TinyStream ts;
 		base_parse(ts, data);
@@ -373,13 +377,33 @@ public:
 	int get_padding() const {
 		return padding_;
 	}
+
+	void set_kernel_w(int w) {
+		k_w_ = w;
+	}
+
+	void set_kernel_h(int h) {
+		k_h_ = h;
+	}
+
+	void set_stride_w(int w) {
+		stride_w_ = w;
+	}
+
+	void set_stride_h(int h) {
+		stride_h_ = h;
+	}
+
+	void set_padding(int pad) {
+		padding_ = pad;
+	}
+
 private:
 	int k_w_;
 	int k_h_;
 	int stride_w_;
 	int stride_h_;
 	int padding_;
-
 };
 
 class FlattenParams : public LayerParams {
